@@ -1,0 +1,180 @@
+2024-02-11 14:56:00.162 +01:00 [INF] Entity Framework Core 6.0.9 initialized 'OrdinationContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.9' with options: None
+2024-02-11 14:56:00.262 +01:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2024-02-11 14:56:00.419 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."PatientId", "p"."cprnr", "p"."navn", "p"."vaegt"
+FROM "Patienter" AS "p"
+LIMIT 1
+2024-02-11 14:56:00.448 +01:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2024-02-11 14:56:00.450 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "l"."LaegemiddelId", "l"."enhed", "l"."enhedPrKgPrDoegnLet", "l"."enhedPrKgPrDoegnNormal", "l"."enhedPrKgPrDoegnTung", "l"."navn"
+FROM "Laegemiddler" AS "l"
+LIMIT 1
+2024-02-11 14:56:00.455 +01:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2024-02-11 14:56:00.458 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "o"."AftenDosisDosisId", "o"."MiddagDosisDosisId", "o"."MorgenDosisDosisId", "o"."NatDosisDosisId", "o"."antalEnheder"
+FROM "Ordinationer" AS "o"
+LIMIT 1
+2024-02-11 14:56:00.549 +01:00 [INF] Now listening on: https://localhost:8080
+2024-02-11 14:56:00.549 +01:00 [INF] Now listening on: http://localhost:8081
+2024-02-11 14:56:00.551 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-11 14:56:00.552 +01:00 [INF] Hosting environment: Development
+2024-02-11 14:56:00.552 +01:00 [INF] Content root path: /Users/idabjorn/Documents/repositories/Softwarearkitektur/TestProjekt23/miniprojekt-ordination-master/ordination-api/
+2024-02-11 14:56:00.755 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:8080/ - -
+2024-02-11 14:56:00.775 +01:00 [INF] Executing endpoint 'HTTP: GET /'
+2024-02-11 14:56:00.780 +01:00 [INF] Writing value of type 'System.String' with status code '200'.
+2024-02-11 14:56:00.786 +01:00 [INF] Executed endpoint 'HTTP: GET /'
+2024-02-11 14:56:00.789 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:8080/ - - - 200 - application/json;+charset=utf-8 36.1655ms
+2024-02-11 14:56:00.819 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:8080/favicon.ico - -
+2024-02-11 14:56:00.820 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:8080/favicon.ico - - - 404 0 application/json;+charset=utf-8 0.9411ms
+2024-02-11 14:56:04.791 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:8080/api/patienter/ - -
+2024-02-11 14:56:04.799 +01:00 [INF] CORS policy execution successful.
+2024-02-11 14:56:04.802 +01:00 [INF] Executing endpoint 'HTTP: GET /api/patienter'
+2024-02-11 14:56:04.857 +01:00 [INF] Entity Framework Core 6.0.9 initialized 'OrdinationContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.9' with options: None
+2024-02-11 14:56:04.938 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."PatientId", "p"."cprnr", "p"."navn", "p"."vaegt", "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "o"."AftenDosisDosisId", "o"."MiddagDosisDosisId", "o"."MorgenDosisDosisId", "o"."NatDosisDosisId", "o"."antalEnheder"
+FROM "Patienter" AS "p"
+LEFT JOIN "Ordinationer" AS "o" ON "p"."PatientId" = "o"."patientId"
+ORDER BY "p"."PatientId"
+2024-02-11 14:56:04.962 +01:00 [INF] Executed endpoint 'HTTP: GET /api/patienter'
+2024-02-11 14:56:04.963 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:8080/api/patienter/ - - - 200 - application/json;+charset=utf-8 172.2226ms
+2024-02-11 14:56:06.117 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:8080/api/ordinationer/ - -
+2024-02-11 14:56:06.119 +01:00 [INF] CORS policy execution successful.
+2024-02-11 14:56:06.119 +01:00 [INF] Executing endpoint 'HTTP: GET /api/ordinationer'
+2024-02-11 14:56:06.129 +01:00 [INF] Entity Framework Core 6.0.9 initialized 'OrdinationContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.9' with options: None
+2024-02-11 14:56:06.164 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "o"."antalEnheder", "l"."LaegemiddelId", "l"."enhed", "l"."enhedPrKgPrDoegnLet", "l"."enhedPrKgPrDoegnNormal", "l"."enhedPrKgPrDoegnTung", "l"."navn", "d"."DatoId", "d"."PNOrdinationId", "d"."dato"
+FROM "Ordinationer" AS "o"
+INNER JOIN "Laegemiddler" AS "l" ON "o"."LaegemiddelId" = "l"."LaegemiddelId"
+LEFT JOIN "Dato" AS "d" ON "o"."OrdinationId" = "d"."PNOrdinationId"
+WHERE "o"."Discriminator" = 'PN'
+ORDER BY "o"."OrdinationId", "l"."LaegemiddelId"
+2024-02-11 14:56:06.181 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "o"."AftenDosisDosisId", "o"."MiddagDosisDosisId", "o"."MorgenDosisDosisId", "o"."NatDosisDosisId", "l"."LaegemiddelId", "l"."enhed", "l"."enhedPrKgPrDoegnLet", "l"."enhedPrKgPrDoegnNormal", "l"."enhedPrKgPrDoegnTung", "l"."navn", "d"."DosisId", "d"."DagligSkævOrdinationId", "d"."antal", "d"."tid", "d0"."DosisId", "d0"."DagligSkævOrdinationId", "d0"."antal", "d0"."tid", "d1"."DosisId", "d1"."DagligSkævOrdinationId", "d1"."antal", "d1"."tid", "d2"."DosisId", "d2"."DagligSkævOrdinationId", "d2"."antal", "d2"."tid"
+FROM "Ordinationer" AS "o"
+INNER JOIN "Laegemiddler" AS "l" ON "o"."LaegemiddelId" = "l"."LaegemiddelId"
+INNER JOIN "Dosis" AS "d" ON "o"."MorgenDosisDosisId" = "d"."DosisId"
+INNER JOIN "Dosis" AS "d0" ON "o"."MiddagDosisDosisId" = "d0"."DosisId"
+INNER JOIN "Dosis" AS "d1" ON "o"."AftenDosisDosisId" = "d1"."DosisId"
+INNER JOIN "Dosis" AS "d2" ON "o"."NatDosisDosisId" = "d2"."DosisId"
+WHERE "o"."Discriminator" = 'DagligFast'
+2024-02-11 14:56:06.194 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "l"."LaegemiddelId", "l"."enhed", "l"."enhedPrKgPrDoegnLet", "l"."enhedPrKgPrDoegnNormal", "l"."enhedPrKgPrDoegnTung", "l"."navn", "d"."DosisId", "d"."DagligSkævOrdinationId", "d"."antal", "d"."tid"
+FROM "Ordinationer" AS "o"
+INNER JOIN "Laegemiddler" AS "l" ON "o"."LaegemiddelId" = "l"."LaegemiddelId"
+LEFT JOIN "Dosis" AS "d" ON "o"."OrdinationId" = "d"."DagligSkævOrdinationId"
+WHERE "o"."Discriminator" = 'DagligSkæv'
+ORDER BY "o"."OrdinationId", "l"."LaegemiddelId"
+2024-02-11 14:56:06.194 +01:00 [INF] Writing value of type '<>f__AnonymousType5`3[[System.Collections.Generic.List`1[[shared.Model.PN, shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[shared.Model.DagligFast, shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[shared.Model.DagligSkæv, shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]' with status code '200'.
+2024-02-11 14:56:06.201 +01:00 [INF] Executed endpoint 'HTTP: GET /api/ordinationer'
+2024-02-11 14:56:06.201 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:8080/api/ordinationer/ - - - 200 - application/json;+charset=utf-8 84.4879ms
+2024-02-11 14:56:06.812 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:8080/api/ordinationer/ - -
+2024-02-11 14:56:06.812 +01:00 [INF] CORS policy execution successful.
+2024-02-11 14:56:06.813 +01:00 [INF] Executing endpoint 'HTTP: GET /api/ordinationer'
+2024-02-11 14:56:06.814 +01:00 [INF] Entity Framework Core 6.0.9 initialized 'OrdinationContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.9' with options: None
+2024-02-11 14:56:06.822 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "o"."antalEnheder", "l"."LaegemiddelId", "l"."enhed", "l"."enhedPrKgPrDoegnLet", "l"."enhedPrKgPrDoegnNormal", "l"."enhedPrKgPrDoegnTung", "l"."navn", "d"."DatoId", "d"."PNOrdinationId", "d"."dato"
+FROM "Ordinationer" AS "o"
+INNER JOIN "Laegemiddler" AS "l" ON "o"."LaegemiddelId" = "l"."LaegemiddelId"
+LEFT JOIN "Dato" AS "d" ON "o"."OrdinationId" = "d"."PNOrdinationId"
+WHERE "o"."Discriminator" = 'PN'
+ORDER BY "o"."OrdinationId", "l"."LaegemiddelId"
+2024-02-11 14:56:06.824 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "o"."AftenDosisDosisId", "o"."MiddagDosisDosisId", "o"."MorgenDosisDosisId", "o"."NatDosisDosisId", "l"."LaegemiddelId", "l"."enhed", "l"."enhedPrKgPrDoegnLet", "l"."enhedPrKgPrDoegnNormal", "l"."enhedPrKgPrDoegnTung", "l"."navn", "d"."DosisId", "d"."DagligSkævOrdinationId", "d"."antal", "d"."tid", "d0"."DosisId", "d0"."DagligSkævOrdinationId", "d0"."antal", "d0"."tid", "d1"."DosisId", "d1"."DagligSkævOrdinationId", "d1"."antal", "d1"."tid", "d2"."DosisId", "d2"."DagligSkævOrdinationId", "d2"."antal", "d2"."tid"
+FROM "Ordinationer" AS "o"
+INNER JOIN "Laegemiddler" AS "l" ON "o"."LaegemiddelId" = "l"."LaegemiddelId"
+INNER JOIN "Dosis" AS "d" ON "o"."MorgenDosisDosisId" = "d"."DosisId"
+INNER JOIN "Dosis" AS "d0" ON "o"."MiddagDosisDosisId" = "d0"."DosisId"
+INNER JOIN "Dosis" AS "d1" ON "o"."AftenDosisDosisId" = "d1"."DosisId"
+INNER JOIN "Dosis" AS "d2" ON "o"."NatDosisDosisId" = "d2"."DosisId"
+WHERE "o"."Discriminator" = 'DagligFast'
+2024-02-11 14:56:06.826 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "l"."LaegemiddelId", "l"."enhed", "l"."enhedPrKgPrDoegnLet", "l"."enhedPrKgPrDoegnNormal", "l"."enhedPrKgPrDoegnTung", "l"."navn", "d"."DosisId", "d"."DagligSkævOrdinationId", "d"."antal", "d"."tid"
+FROM "Ordinationer" AS "o"
+INNER JOIN "Laegemiddler" AS "l" ON "o"."LaegemiddelId" = "l"."LaegemiddelId"
+LEFT JOIN "Dosis" AS "d" ON "o"."OrdinationId" = "d"."DagligSkævOrdinationId"
+WHERE "o"."Discriminator" = 'DagligSkæv'
+ORDER BY "o"."OrdinationId", "l"."LaegemiddelId"
+2024-02-11 14:56:06.827 +01:00 [INF] Writing value of type '<>f__AnonymousType5`3[[System.Collections.Generic.List`1[[shared.Model.PN, shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[shared.Model.DagligFast, shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[shared.Model.DagligSkæv, shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]' with status code '200'.
+2024-02-11 14:56:06.828 +01:00 [INF] Executed endpoint 'HTTP: GET /api/ordinationer'
+2024-02-11 14:56:06.828 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:8080/api/ordinationer/ - - - 200 - application/json;+charset=utf-8 15.9589ms
+2024-02-11 14:56:09.335 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:8080/api/ordinationer/ - -
+2024-02-11 14:56:09.336 +01:00 [INF] CORS policy execution successful.
+2024-02-11 14:56:09.337 +01:00 [INF] Executing endpoint 'HTTP: GET /api/ordinationer'
+2024-02-11 14:56:09.338 +01:00 [INF] Entity Framework Core 6.0.9 initialized 'OrdinationContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.9' with options: None
+2024-02-11 14:56:09.339 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "o"."antalEnheder", "l"."LaegemiddelId", "l"."enhed", "l"."enhedPrKgPrDoegnLet", "l"."enhedPrKgPrDoegnNormal", "l"."enhedPrKgPrDoegnTung", "l"."navn", "d"."DatoId", "d"."PNOrdinationId", "d"."dato"
+FROM "Ordinationer" AS "o"
+INNER JOIN "Laegemiddler" AS "l" ON "o"."LaegemiddelId" = "l"."LaegemiddelId"
+LEFT JOIN "Dato" AS "d" ON "o"."OrdinationId" = "d"."PNOrdinationId"
+WHERE "o"."Discriminator" = 'PN'
+ORDER BY "o"."OrdinationId", "l"."LaegemiddelId"
+2024-02-11 14:56:09.341 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "o"."AftenDosisDosisId", "o"."MiddagDosisDosisId", "o"."MorgenDosisDosisId", "o"."NatDosisDosisId", "l"."LaegemiddelId", "l"."enhed", "l"."enhedPrKgPrDoegnLet", "l"."enhedPrKgPrDoegnNormal", "l"."enhedPrKgPrDoegnTung", "l"."navn", "d"."DosisId", "d"."DagligSkævOrdinationId", "d"."antal", "d"."tid", "d0"."DosisId", "d0"."DagligSkævOrdinationId", "d0"."antal", "d0"."tid", "d1"."DosisId", "d1"."DagligSkævOrdinationId", "d1"."antal", "d1"."tid", "d2"."DosisId", "d2"."DagligSkævOrdinationId", "d2"."antal", "d2"."tid"
+FROM "Ordinationer" AS "o"
+INNER JOIN "Laegemiddler" AS "l" ON "o"."LaegemiddelId" = "l"."LaegemiddelId"
+INNER JOIN "Dosis" AS "d" ON "o"."MorgenDosisDosisId" = "d"."DosisId"
+INNER JOIN "Dosis" AS "d0" ON "o"."MiddagDosisDosisId" = "d0"."DosisId"
+INNER JOIN "Dosis" AS "d1" ON "o"."AftenDosisDosisId" = "d1"."DosisId"
+INNER JOIN "Dosis" AS "d2" ON "o"."NatDosisDosisId" = "d2"."DosisId"
+WHERE "o"."Discriminator" = 'DagligFast'
+2024-02-11 14:56:09.343 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "l"."LaegemiddelId", "l"."enhed", "l"."enhedPrKgPrDoegnLet", "l"."enhedPrKgPrDoegnNormal", "l"."enhedPrKgPrDoegnTung", "l"."navn", "d"."DosisId", "d"."DagligSkævOrdinationId", "d"."antal", "d"."tid"
+FROM "Ordinationer" AS "o"
+INNER JOIN "Laegemiddler" AS "l" ON "o"."LaegemiddelId" = "l"."LaegemiddelId"
+LEFT JOIN "Dosis" AS "d" ON "o"."OrdinationId" = "d"."DagligSkævOrdinationId"
+WHERE "o"."Discriminator" = 'DagligSkæv'
+ORDER BY "o"."OrdinationId", "l"."LaegemiddelId"
+2024-02-11 14:56:09.344 +01:00 [INF] Writing value of type '<>f__AnonymousType5`3[[System.Collections.Generic.List`1[[shared.Model.PN, shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[shared.Model.DagligFast, shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[shared.Model.DagligSkæv, shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]' with status code '200'.
+2024-02-11 14:56:09.345 +01:00 [INF] Executed endpoint 'HTTP: GET /api/ordinationer'
+2024-02-11 14:56:09.346 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:8080/api/ordinationer/ - - - 200 - application/json;+charset=utf-8 10.3420ms
+2024-02-11 14:56:11.994 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:8080/api/ordinationer/ - -
+2024-02-11 14:56:11.994 +01:00 [INF] CORS policy execution successful.
+2024-02-11 14:56:11.995 +01:00 [INF] Executing endpoint 'HTTP: GET /api/ordinationer'
+2024-02-11 14:56:11.996 +01:00 [INF] Entity Framework Core 6.0.9 initialized 'OrdinationContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.9' with options: None
+2024-02-11 14:56:11.998 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "o"."antalEnheder", "l"."LaegemiddelId", "l"."enhed", "l"."enhedPrKgPrDoegnLet", "l"."enhedPrKgPrDoegnNormal", "l"."enhedPrKgPrDoegnTung", "l"."navn", "d"."DatoId", "d"."PNOrdinationId", "d"."dato"
+FROM "Ordinationer" AS "o"
+INNER JOIN "Laegemiddler" AS "l" ON "o"."LaegemiddelId" = "l"."LaegemiddelId"
+LEFT JOIN "Dato" AS "d" ON "o"."OrdinationId" = "d"."PNOrdinationId"
+WHERE "o"."Discriminator" = 'PN'
+ORDER BY "o"."OrdinationId", "l"."LaegemiddelId"
+2024-02-11 14:56:12.001 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "o"."AftenDosisDosisId", "o"."MiddagDosisDosisId", "o"."MorgenDosisDosisId", "o"."NatDosisDosisId", "l"."LaegemiddelId", "l"."enhed", "l"."enhedPrKgPrDoegnLet", "l"."enhedPrKgPrDoegnNormal", "l"."enhedPrKgPrDoegnTung", "l"."navn", "d"."DosisId", "d"."DagligSkævOrdinationId", "d"."antal", "d"."tid", "d0"."DosisId", "d0"."DagligSkævOrdinationId", "d0"."antal", "d0"."tid", "d1"."DosisId", "d1"."DagligSkævOrdinationId", "d1"."antal", "d1"."tid", "d2"."DosisId", "d2"."DagligSkævOrdinationId", "d2"."antal", "d2"."tid"
+FROM "Ordinationer" AS "o"
+INNER JOIN "Laegemiddler" AS "l" ON "o"."LaegemiddelId" = "l"."LaegemiddelId"
+INNER JOIN "Dosis" AS "d" ON "o"."MorgenDosisDosisId" = "d"."DosisId"
+INNER JOIN "Dosis" AS "d0" ON "o"."MiddagDosisDosisId" = "d0"."DosisId"
+INNER JOIN "Dosis" AS "d1" ON "o"."AftenDosisDosisId" = "d1"."DosisId"
+INNER JOIN "Dosis" AS "d2" ON "o"."NatDosisDosisId" = "d2"."DosisId"
+WHERE "o"."Discriminator" = 'DagligFast'
+2024-02-11 14:56:12.002 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "l"."LaegemiddelId", "l"."enhed", "l"."enhedPrKgPrDoegnLet", "l"."enhedPrKgPrDoegnNormal", "l"."enhedPrKgPrDoegnTung", "l"."navn", "d"."DosisId", "d"."DagligSkævOrdinationId", "d"."antal", "d"."tid"
+FROM "Ordinationer" AS "o"
+INNER JOIN "Laegemiddler" AS "l" ON "o"."LaegemiddelId" = "l"."LaegemiddelId"
+LEFT JOIN "Dosis" AS "d" ON "o"."OrdinationId" = "d"."DagligSkævOrdinationId"
+WHERE "o"."Discriminator" = 'DagligSkæv'
+ORDER BY "o"."OrdinationId", "l"."LaegemiddelId"
+2024-02-11 14:56:12.003 +01:00 [INF] Writing value of type '<>f__AnonymousType5`3[[System.Collections.Generic.List`1[[shared.Model.PN, shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[shared.Model.DagligFast, shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[shared.Model.DagligSkæv, shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]' with status code '200'.
+2024-02-11 14:56:12.004 +01:00 [INF] Executed endpoint 'HTTP: GET /api/ordinationer'
+2024-02-11 14:56:12.004 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:8080/api/ordinationer/ - - - 200 - application/json;+charset=utf-8 10.3197ms
+2024-02-11 14:56:12.021 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:8080/api/laegemidler - -
+2024-02-11 14:56:12.021 +01:00 [INF] CORS policy execution successful.
+2024-02-11 14:56:12.021 +01:00 [INF] Executing endpoint 'HTTP: GET /api/laegemidler'
+2024-02-11 14:56:12.023 +01:00 [INF] Entity Framework Core 6.0.9 initialized 'OrdinationContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.9' with options: None
+2024-02-11 14:56:12.028 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "l"."LaegemiddelId", "l"."enhed", "l"."enhedPrKgPrDoegnLet", "l"."enhedPrKgPrDoegnNormal", "l"."enhedPrKgPrDoegnTung", "l"."navn"
+FROM "Laegemiddler" AS "l"
+2024-02-11 14:56:12.029 +01:00 [INF] Executed endpoint 'HTTP: GET /api/laegemidler'
+2024-02-11 14:56:12.029 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:8080/api/laegemidler - - - 200 - application/json;+charset=utf-8 8.2262ms
+2024-02-11 14:56:12.038 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:8080/api/patienter/ - -
+2024-02-11 14:56:12.038 +01:00 [INF] CORS policy execution successful.
+2024-02-11 14:56:12.038 +01:00 [INF] Executing endpoint 'HTTP: GET /api/patienter'
+2024-02-11 14:56:12.040 +01:00 [INF] Entity Framework Core 6.0.9 initialized 'OrdinationContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.9' with options: None
+2024-02-11 14:56:12.042 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."PatientId", "p"."cprnr", "p"."navn", "p"."vaegt", "o"."OrdinationId", "o"."Discriminator", "o"."LaegemiddelId", "o"."patientId", "o"."slutDen", "o"."startDen", "o"."AftenDosisDosisId", "o"."MiddagDosisDosisId", "o"."MorgenDosisDosisId", "o"."NatDosisDosisId", "o"."antalEnheder"
+FROM "Patienter" AS "p"
+LEFT JOIN "Ordinationer" AS "o" ON "p"."PatientId" = "o"."patientId"
+ORDER BY "p"."PatientId"
+2024-02-11 14:56:12.045 +01:00 [INF] Executed endpoint 'HTTP: GET /api/patienter'
+2024-02-11 14:56:12.046 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:8080/api/patienter/ - - - 200 - application/json;+charset=utf-8 7.4633ms
+2024-02-11 14:58:42.744 +01:00 [INF] Application is shutting down...

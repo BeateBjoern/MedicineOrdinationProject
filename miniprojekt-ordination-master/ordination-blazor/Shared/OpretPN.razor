@@ -1,0 +1,130 @@
+@namespace ordinationsapp.Shared
+
+@using shared.Model;
+@using ordinationsapp.Model;
+@using ordinationsapp.Data;
+@inject ApiService apiService
+
+<div class="container">
+    <h1>Opret ordination (PN)</h1>
+
+    <div class="row">
+        <p>Patient: @Patient?.navn (@Patient?.cprnr)</p>
+        <div class="form-group row">
+            <label for="laegemiddel" class="col-sm-4 col-form-label">Lægemiddel</label>
+            <div class="col-sm-8">
+            <input readonly type="text" class="form-control" id="laegemiddel" value=@laegemiddel?.navn>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="startdato" class="col-sm-4 col-form-label">Enhed</label>
+            <div class="col-sm-8">
+                <input readonly type="text" class="form-control" id="laegemiddel" value=@laegemiddel?.enhed>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="startdato" class="col-sm-4 col-form-label">Startdato for ordination</label>
+            <div class="col-sm-8">
+            <input @bind="StartDato" type="date" class="form-control" id="startdato">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="slutdato" class="col-sm-4 col-form-label">Slutdato for ordination</label>
+            <div class="col-sm-8">
+            <input @bind="SlutDato" type="date" class="form-control" id="slutdato">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="anbefalet-enheder" class="col-sm-4 col-form-label">Anbefalet antal enheder per døgn</label>
+            <div class="col-sm-8">
+                <input readonly type="text" class="form-control" id="anbefalet-enheder" value=@AnbefaletDosisPerDøgnRounded>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="antal-enheder" class="col-sm-4 col-form-label">Antal enheder (styk):</label>
+            <div class="col-sm-8">
+            <input @bind="antalEnheder" type="number" step="0.01" class="form-control" id="antal-enheder">
+                <p style="color:red"> @lavDoegnDosis</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-8">
+            <button class="btn btn-primary" @onclick="Opret">Opret ordination</button>
+            <button class="btn btn-secondary" @onclick="() => onFortryd?.Invoke()">Fortryd</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-8">
+                <p style="color:red"> @responseMessage</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public PatientResponse? Patient { get; set; }
+    [Parameter]
+    public Laegemiddel? laegemiddel { get; set; }
+    [Parameter]
+    public double AnbefaletDosisPerDøgn { get; set; }
+    public string AnbefaletDosisPerDøgnRounded { get { return AnbefaletDosisPerDøgn.ToString("#.##"); } }
+    [Parameter]
+    public Action? onFortryd { get; set; }
+    [Parameter]
+    public Action<string>? onDone { get; set; }
+
+    private double antalEnheder = 0;
+    private DateTime StartDato { get; set; } = DateTime.Now;
+    private DateTime SlutDato { get; set; } = DateTime.Now.AddDays(3);
+    private string responseMessage = "";
+    private string lavDoegnDosis = "";
+
+
+    //metode vi har lavet 
+    protected override async void OnInitialized()
+    {
+        if(AnbefaletDosisPerDøgn > 0 && AnbefaletDosisPerDøgn < 1)
+        {
+            lavDoegnDosis = "Den anbefalede døgndosis er tæt på 0, overvej evt. et andet præparat";    
+        }
+    }
+
+    // validering til metode vi har tilføjet 
+    private async Task Opret() {
+        if (Patient == null || laegemiddel == null)
+        {
+            responseMessage = "Patient og laegemiddel skal vælges";
+            return;
+        }
+        else if (StartDato > SlutDato)
+        {
+            responseMessage = "Sludato skal være efter startdato";
+            return;
+        }
+        else if(antalEnheder <= 0){
+            responseMessage = "Antal enheder skal være mere end 0";
+        }
+        else if (antalEnheder < AnbefaletDosisPerDøgn)
+        {       
+                Console.WriteLine("Opret");
+                PN pnResult = await apiService.OpretPN(Patient.id, laegemiddel.LaegemiddelId, antalEnheder, StartDato, SlutDato);
+                Console.WriteLine("Oprettet!");
+                onDone?.Invoke($"Oprettet PN ordination for {Patient.navn}!");
+        }
+        else
+        {
+           responseMessage = "Valgte dosis overskrider anbefalet døgndosis";
+        }
+            
+
+          
+       
+
+    }
+
+}
